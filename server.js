@@ -88,7 +88,10 @@ app.prepare().then(() => {
     const server = createServer((req, res) => handle(req, res));
 
     const io = new Server(server, {
-        cors: { origin: "*" },
+        cors: {
+            origin: process.env.NEXT_PUBLIC_SOCKET_URL,
+            credentials: true
+        },
         maxHttpBufferSize: 1e8 // 🔥 100 MB
     });
 
