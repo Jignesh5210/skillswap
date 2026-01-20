@@ -26,5 +26,5 @@ const FeedbackSchema = new mongoose.Schema({
 // 🚫 one feedback per user per profile
 FeedbackSchema.index({ fromUser: 1, toUser: 1 }, { unique: true });
 
-module.exports mongoose.models.Feedback ||
+module.exports = mongoose.models.Feedback ||
   mongoose.model("Feedback", FeedbackSchema);
