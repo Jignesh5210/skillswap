@@ -599,7 +599,10 @@ export default function VideoCallPage() {
 
     /* ---------------- SOCKET INIT ---------------- */
     useEffect(() => {
-        socketRef.current = io(window.location.origin);
+        socketRef.current = io(
+            process.env.NEXT_PUBLIC_SOCKET_URL || window.location.origin
+        );
+
 
         socketRef.current.on("join-error", (msg) => {
             alert(msg);
@@ -652,11 +655,7 @@ export default function VideoCallPage() {
         });
 
 
-        // socketRef.current.on("user-joined-call", async () => {
-        //     const offer = await pcRef.current.createOffer();
-        //     await pcRef.current.setLocalDescription(offer);
-        //     socketRef.current.emit("offer", { roomId: chatId, offer });
-        // });
+
 
         return () => socketRef.current.off();
     }, [joined, chatId]);
@@ -749,33 +748,6 @@ export default function VideoCallPage() {
     if (!joined) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-black">
-                {/* <div className="bg-white p-6 rounded-xl w-96">
-                    <h2 className="text-xl font-bold mb-4">Video Call</h2>
-
-                    <input
-                        type="password"
-                        placeholder="Room Password"
-                        className="w-full border p-2 mb-4"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-
-                    {!roomCreated && (
-                        <button
-                            onClick={createRoom}
-                            className="bg-blue-600 text-white w-full py-2 rounded mb-2"
-                        >
-                            Create Room
-                        </button>
-                    )}
-
-                    <button
-                        onClick={joinCall}
-                        className="bg-green-600 text-white w-full py-2 rounded"
-                    >
-                        Join Call
-                    </button>
-                </div> */}
 
                 <div className="relative z-10 w-full max-w-md rounded-3xl p-8
           bg-gradient-to-br from-[#05060f] via-[#0b0d2a] to-[#04050c]

@@ -126,7 +126,10 @@ export default function ChatPage() {
 
     // 🔌 Socket setup
     useEffect(() => {
-        socketRef.current = io("http://localhost:3000");
+        socketRef.current = io(
+            process.env.NEXT_PUBLIC_SOCKET_URL || window.location.origin
+        );
+
 
         socketRef.current.emit("join-chat", { chatId });
 
@@ -177,86 +180,6 @@ export default function ChatPage() {
     };
 
     return (
-        // <>
-        //     <Navbar />
-
-        //     <div className="pt-28 max-w-7xl mx-auto px-6">
-        //         <h1 className="text-3xl font-bold mb-4 text-white">Chat 💬</h1>
-
-        //         <div className="bg-white h-[60vh] rounded-xl p-4 overflow-y-auto shadow">
-        //             {messages.map((m, i) => (
-        //                 <div
-        //                     key={i}
-        //                     className={`mb-4 flex ${m.senderId === me?._id ? "justify-end" : "justify-start"
-        //                         }`}
-        //                 >
-        //                     <div className=" border-2 border-red-600 bg-gray-500 max-w-[75%]">
-        //                         <b>
-        //                             {m.senderId === me?._id ? "You" : m.senderName}:
-        //                         </b>
-
-        //                         {m.text && <span> {m.text}</span>}
-
-        //                         {m.file && (
-        //                             m.fileType.startsWith("image") ? (
-        //                                 <img
-        //                                     src={m.file}
-        //                                     className="mt-2 max-w-xs rounded"
-        //                                 />
-        //                             ) : (
-        //                                 <a
-        //                                     href={m.file}
-        //                                     download={m.fileName}
-        //                                     className="block mt-2 text-blue-600 underline"
-        //                                 >
-        //                                     📎 {m.fileName}
-        //                                 </a>
-        //                             )
-        //                         )}
-
-        //                         <div className="text-xs text-gray-500">
-        //                             {m.time}
-        //                         </div>
-        //                     </div>
-
-        //                 </div>
-        //             ))}
-        //         </div>
-
-        //         {/* INPUT AREA */}
-        //         <div className="flex gap-3 mt-4">
-        //             <input
-        //                 value={message}
-        //                 onChange={(e) => setMessage(e.target.value)}
-        //                 className="flex-1 border rounded px-4 py-2"
-        //                 placeholder="Type message..."
-        //             />
-        //             <button
-        //                 onClick={sendMessage}
-        //                 className="bg-blue-600 text-white px-6 rounded"
-        //             >
-        //                 Send
-        //             </button>
-        //         </div>
-
-        //         {/* FILE INPUT */}
-        //         <input
-        //             type="file"
-        //             accept="image/*,video/*,.pdf,.doc,.docx"
-        //             onChange={handleFile}
-        //             className="mt-3 text-black"
-        //         />
-
-
-        //         {/* VIDEO CALL */}
-        //         <a
-        //             href={`/video/${chatId}`}
-        //             className="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded-full"
-        //         >
-        //             📹 Start Video Call
-        //         </a>
-        //     </div>
-        // </>
 
 
         <>
@@ -368,20 +291,6 @@ export default function ChatPage() {
                         </div>
                     </div>
 
-
-                    {/* VIDEO CALL */}
-                    {/* <div className="mt-10 flex justify-center sm:justify-start">
-                        <a
-                            href={`/video/${chatId}`}
-                            className="inline-flex items-center gap-3 px-10 py-4 rounded-full
-            bg-gradient-to-r from-purple-600 to-indigo-700
-            text-white font-semibold
-            shadow-[0_0_45px_rgba(139,92,246,0.6)]
-            hover:scale-105 transition"
-                        >
-                            📹 Start Video Call
-                        </a>
-                    </div> */}
                 </div>
             </div>
         </>
