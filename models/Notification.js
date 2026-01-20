@@ -68,8 +68,7 @@
 
 
 
-
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const NotificationSchema = new mongoose.Schema(
   {
@@ -132,5 +131,5 @@ NotificationSchema.index(
   }
 );
 
-export default mongoose.models.Notification ||
+module.exports = mongoose.models.Notification ||
   mongoose.model("Notification", NotificationSchema);

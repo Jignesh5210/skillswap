@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const FeedbackSchema = new mongoose.Schema({
   fromUser: {
@@ -26,5 +26,5 @@ const FeedbackSchema = new mongoose.Schema({
 // 🚫 one feedback per user per profile
 FeedbackSchema.index({ fromUser: 1, toUser: 1 }, { unique: true });
 
-export default mongoose.models.Feedback ||
+module.exports mongoose.models.Feedback ||
   mongoose.model("Feedback", FeedbackSchema);

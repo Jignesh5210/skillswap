@@ -72,12 +72,12 @@ const { initSocket } = require("./lib/socket");
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI);
 
-const Message = require("./models/Message").default;
+const Message = require("./models/Message")
 
 const bcrypt = require("bcryptjs");
-const VideoRoom = require("./models/VideoRoom").default;
+const VideoRoom = require("./models/VideoRoom")
 const jwt = require("jsonwebtoken");
-const Chat = require("./models/Chat").default;
+const Chat = require("./models/Chat")
 
 
 const dev = process.env.NODE_ENV !== "production";

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const VideoRoomSchema = new mongoose.Schema({
     chatId: {
@@ -13,5 +13,5 @@ const VideoRoomSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-export default mongoose.models.VideoRoom ||
-    mongoose.model("VideoRoom", VideoRoomSchema);
+module.exports =
+    mongoose.models.VideoRoom || mongoose.model("VideoRoom", VideoRoomSchema);

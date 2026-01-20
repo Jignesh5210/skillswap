@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const ChatSchema = new mongoose.Schema({
   users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }],
@@ -8,4 +8,5 @@ const ChatSchema = new mongoose.Schema({
 
 ChatSchema.index({ users: 1 });
 
-export default mongoose.models.Chat || mongoose.model("Chat", ChatSchema);
+module.exports =
+  mongoose.models.Chat || mongoose.model("Chat", ChatSchema);
